@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  sftp:
+    image: atmoz/sftp
+    ports:
+      - "9922:22"
+    env_file:
+      - .env.prod
+    networks:
+      - turreta_network
+      - internal
+  nginx:
+    build: ./nginx
+    ports:
+      - 9923:80
+    depends_on:
+      - sftp
+    env_file:
+      - .env.prod
+    networks:
+      - net
+      - internal
+networks:
+  internal: 
+    external: false
+  turreta_network:
+    driver: bridge
