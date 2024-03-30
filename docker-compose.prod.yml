@@ -22,6 +22,8 @@ services:
       - net
       - internal
 networks:
+  net:
+    external: true
   internal: 
     external: false
   turreta_network:
