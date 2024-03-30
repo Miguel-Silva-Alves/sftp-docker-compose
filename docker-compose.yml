@@ -5,10 +5,11 @@ services:
         image: atmoz/sftp
         ports:
             - "9922:22"
-        command: foo:pass:1001:12345:/foo-home
+        env_file:
+            - .env
         networks:
-          - turreta_network     
- 
+          - turreta_network
+
 networks:
   turreta_network:
     driver: bridge
